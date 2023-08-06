@@ -1,19 +1,22 @@
 School Management System
 -----------------------
-This system helps headmasters to get the most accurate information to make more effective decisions. 
-Teachers and headmasters gain time saving administrative tools, parents gain immediate access to 
-their children’s grades and students can track their own progress. 
+School management system is a large database system which is used for managing school’s daily routine work. It is designed to meet a most individual school needs. 
 
 School Management System Features 
 ---------------------------------
--> Multi users Signup and Signin.
+[] Multi users Signup and Signin.
 
--> Add/Delete Student
+[] Add/Delete Student
 
--> Show student Details
+[] Show student Details
 
--> Manage Notices
+[] Manage Notices
 
--> Manage Classes
+[] Manage Classes
 
--> Show Results
+[] Show Results
+
+First Page
+--------------------
+[] Login page
+[] Register page
