@@ -4,19 +4,20 @@ School management system is a large database system which is used for managing s
 
 School Management System Features 
 ---------------------------------
-[] Multi users Signup and Signin.
+- [ ] Multi users Signup and Signin.
 
-[] Add/Delete Student
+- [ ] Add/Delete Student
 
-[] Show student Details
+- [ ] Show student Details
 
-[] Manage Notices
+- [ ] Manage Notices
 
-[] Manage Classes
+- [ ] Manage Classes
 
-[] Show Results
+- [ ] Show Results
 
 First Page
 --------------------
-[] Login page
-[] Register page
+- [ ] Login page
+
+- [ ] Register page
