@@ -1,19 +1,52 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Formik, Field, Form } from 'formik';
 import Image from "next/image";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Yup from 'yup';
+import { setUserDetails } from "../../redux/reducerSlices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
-const Login = () => {
+const validationLoginSchema = Yup.object().shape({
+    email: Yup.string()
+        .email("Invalid email address")
+        .required("Email is required"),
+    password: Yup.string()
+        .min(6, "Password must be at least 6 characters")
+        .required("Password is required"),
+});
 
-    const validationLoginSchema = Yup.object().shape({
-        email: Yup.string()
-            .email("Invalid email address")
-            .required("Email is required"),
-        password: Yup.string()
-            .min(6, "Password must be at least 6 characters")
-            .required("Password is required"),
-    });
+export default function Login () {
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const [responseMsg, setResponseMsg] = useState({ msgLabel: "", msgType: "" });
+    const handleLogin = async (values) => {
+      try {
+        const response = await fetch("http://localhost:8080/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
+        const result = await response.json();
+
+        if (result.success) {
+          dispatch(setUserDetails(result));
+          setResponseMsg({
+            msgLabel: "Login successful, Welcome!",
+            msgType: "success",
+          });
+          router.push("/");
+        } else {
+          setResponseMsg({ msgLabel: result.msg, msgType: "error" });
+        }
+      } catch (error) {
+        setResponseMsg({ msgLabel: "error.msg", msgType: "error" });
+        console.error("Error posting data:", error);
+      }
+    };
+
 
     return (
         <Formik
@@ -21,10 +54,12 @@ const Login = () => {
               email: '', 
               password: '',
             }}
-            onSubmit={(values, { setSubmitting }) => {
-                console.log(values);
-            }}
             validationSchema={validationLoginSchema}
+            onSubmit={(values, { setSubmitting }) => {
+                //console.log(values);
+                handleLogin(values);
+            }}
+            
         >
             {(formik, isSubmitting) => (
                 <div className='container'>
@@ -67,4 +102,3 @@ const Login = () => {
     );
 };
 
-export default Login;
