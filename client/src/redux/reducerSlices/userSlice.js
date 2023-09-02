@@ -12,7 +12,7 @@ const UserSlice = createSlice({
         setUserDetails: (state, actions) => {
             return{
              ...state,
-             token: actios.payload.token,
+             token: actions.payload.token,
              isLoggedIn: actions.payload.success,
              userDetails: actions.payload.userDetails
             }
