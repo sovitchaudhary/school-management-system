@@ -1,55 +1,65 @@
-import React from "react";
-import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
+import React from 'react';
+import { Formik, Field, Form } from 'formik';
+import Image from "next/image";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import * as Yup from 'yup';
 
-const SignupSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Please Enter Your Name"),
-  password: Yup.string()
-    .min(6, "Too Short!")
-    .max(50, "Too Long!")
-    .required("required"),
-  
-});
+const Login = () => {
 
-const Login = () => (
-  <center>
-    <div>
-      <h1>Sign in</h1>
-      <Formik
-        initialValues={{
-          firstName: "",
-          password: "",
-        }}
-        validationSchema={SignupSchema}
-        onSubmit={(values) => {
-          // same shape as initial values
-          console.log(values);
-        }}
-      >
-        {({ errors, touched }) => (
-          <Form>
-            <div className="container">
-              <div>
-                <Field type="text" name="firstName" placeholder="firstName" />
-                {errors.firstName && touched.firstName ? (
-                  <div>{errors.firstName}</div>
-                ) : null}
-              </div>
-              <div>
-                <Field type="password" name="password" placeholder="password" />
-                {errors.password && touched.password ? (
-                  <div>{errors.password}</div>
-                ) : null}
-              </div>
-              <button type="submit" className="form-control" >Submit</button>
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </div>
-  </center>
-);
+    const validationLoginSchema = Yup.object().shape({
+        email: Yup.string()
+            .email("Invalid email address")
+            .required("Email is required"),
+        password: Yup.string()
+            .min(6, "Password must be at least 6 characters")
+            .required("Password is required"),
+    });
+
+    return (
+        <Formik
+            initialValues={{ 
+              email: '', 
+              password: '',
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+                console.log(values);
+            }}
+            validationSchema={validationLoginSchema}
+        >
+            {(formik, isSubmitting) => (
+              <center>
+                <Image src={'/limg.jpg'} width={150} height={100} alt="logo/"></Image>
+                <div>
+                  <h4>Login to Your Account</h4>
+                </div>
+                <Form>
+                    <div className="form-group col-3 mb-3 md-4">
+                        <label htmlFor="email">Email</label>
+                        <Field name="email" className={(formik.touched.email && formik.errors.email) ? 'form-control is-invalid' : 'form-control'} type="email" />
+                        
+                        {formik.touched.email && formik.errors.email ? (
+                            <div className="invalid-feedback">{formik.errors.email}</div>
+                        ) : null}
+                    </div>
+
+                    <div className="form-group col-3 mb-3 md-4">
+                        <label htmlFor="password">Password</label>
+                        <Field name="password" className={(formik.touched.password && formik.errors.password) ? 'form-control is-invalid' : 'form-control'} type="password" />
+                        
+                        {formik.touched.password && formik.errors.password ? (
+                            <div className="invalid-feedback">{formik.errors.password}</div>
+                        ) : null}
+                    </div>
+
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>{isSubmitting ? "Please wait..." : "Login"}</button>
+                    </div>
+
+                </Form>
+                </center>
+            )}
+        </Formik>
+    );
+};
+
 export default Login;
