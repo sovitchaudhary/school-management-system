@@ -36,8 +36,8 @@ const Register = () => {
         >
             {(formik, isSubmitting) => (
                 <div className='container'>
-                     <div class="row justify-content-center">
-                        <div class="col-12 col-md-6">
+                     <div className="row justify-content-center">
+                        <div className="col-12 col-md-6">
                             <div className='text-center'>
                             <Image src={'/limg.jpg'} width={100} height={100} alt="logo/"></Image>
                             <h4>Create Account</h4>
