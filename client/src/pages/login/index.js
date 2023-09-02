@@ -27,13 +27,15 @@ const Login = () => {
             validationSchema={validationLoginSchema}
         >
             {(formik, isSubmitting) => (
-              <center>
-                <Image src={'/limg.jpg'} width={150} height={100} alt="logo/"></Image>
-                <div>
+              <div className='container'>
+              <div class="row justify-content-center">
+                 <div class="col-12 col-md-6">
+                     <div className='text-center'>
+                <Image src={'/limg.jpg'} width={100} height={100} alt="logo/"></Image>
                   <h4>Login to Your Account</h4>
                 </div>
                 <Form>
-                    <div className="form-group col-3 mb-3 md-4">
+                    <div className="form-group mb-3">
                         <label htmlFor="email">Email</label>
                         <Field name="email" className={(formik.touched.email && formik.errors.email) ? 'form-control is-invalid' : 'form-control'} type="email" />
                         
@@ -42,7 +44,7 @@ const Login = () => {
                         ) : null}
                     </div>
 
-                    <div className="form-group col-3 mb-3 md-4">
+                    <div className="form-group mb-3">
                         <label htmlFor="password">Password</label>
                         <Field name="password" className={(formik.touched.password && formik.errors.password) ? 'form-control is-invalid' : 'form-control'} type="password" />
                         
@@ -56,7 +58,10 @@ const Login = () => {
                     </div>
 
                 </Form>
-                </center>
+                </div>
+                    </div>
+
+                </div>
             )}
         </Formik>
     );
