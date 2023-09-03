@@ -95,8 +95,12 @@ const Register = () => {
                                     ) : null}
                                 </div>
 
-                                <div className="form-group">
+                                <div className="form-group text-center">
                                     <button type="submit" className="btn btn-primary" disabled={isSubmitting}>{isSubmitting ? "Please wait..." : "Register"}</button>
+                                </div>
+                                <br></br>
+                                <div className="col md-3 text-center" onClick={() => router.push("./login")}>
+                                    <p>Already have an account? <b className="text-primary">Login</b></p>
                                 </div>
 
                             </Form>

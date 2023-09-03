@@ -88,10 +88,13 @@ export default function Login () {
                                     ) : null}
                                 </div>
 
-                                <div className="form-group">
+                                <div className="form-group text-center">
                                     <button type="submit" className="btn btn-primary" disabled={isSubmitting}>{isSubmitting ? "Please wait..." : "Login"}</button>
                                 </div>
-
+                                <br></br>
+                                <div className="text-center" onClick={() => router.push("./register")}>
+                                  <p>Don't have an account? <b className='text-primary'>Sign Up</b></p>
+                                </div>
                             </Form>
                         </div>
                     </div>
